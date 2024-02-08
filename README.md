@@ -1,2 +1,6 @@
 # stocks-app
- A student stocks database application
+
+- this 
+- is
+- a
+- list
