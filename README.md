@@ -1,6 +1,1 @@
-# stocks-app
-
-- this 
-- is
-- a
-- list
+# Stocks App
