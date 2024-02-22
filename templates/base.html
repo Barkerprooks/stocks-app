@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/css/styles.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Stocks App</title>
+    </head>
+    <body>
+        <div id="header">
+            <div id="header-left">
+                <a href="/">Flask Stock Portfolio App</a>
+            </div>
+            <div id="header-right">
+                <a href="/list-stocks">LIST STOCKS</a>
+                <a href="/add-stock">ADD STOCK</a>
+                <a href="/profile">PROFILE</a>
+                <a href="/logout">LOGOUT</a>
+            </div>
+        </div>
+        <div id="content">
+            {% block content %}
+                <p>failed to load template</p>
+            {% endblock %}
+        </div>
+    </body>
+</html>
