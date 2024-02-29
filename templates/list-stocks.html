@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-<p>this is where you can view stocks</p>
+
+{% for row in dummy %}
+    <div>{{ row }}</div>
+{% endfor %}
+
 {% endblock %}

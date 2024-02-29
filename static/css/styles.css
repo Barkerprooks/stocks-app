@@ -3,6 +3,13 @@ body {
     margin: 0;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    margin: 72px auto;
+}
+
 #header {
     display: flex;
     margin: 0;
@@ -27,4 +34,16 @@ body {
 
 #content {
     text-align: center;
+}
+
+#submit-button {
+    padding: 12px 24px;
+    margin: 12px auto;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.login-input {
+    padding: 12px;
+    margin: 8px 0px;
 }
