@@ -43,6 +43,12 @@ form {
     cursor: pointer;
 }
 
+#index-message {
+    font-size: 24pt;
+    padding-right: 24px;
+    text-align: right;
+}
+
 .login-input {
     padding: 12px;
     margin: 8px 0px;

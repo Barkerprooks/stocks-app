@@ -32,3 +32,14 @@ class Student:
 student = Student('bob', 'blue')
 student.show_fav_color()
 ```
+
+# SQL
+```sql
+-- creates a table called 'users', gives them
+-- two fields "username" and "md5sum" which are
+-- both strings
+CREATE TABLE users (username TEXT, md5sum TEXT); 
+
+-- inserts data into the table as rows
+INSERT INTO users VALUES ('username', 'password');
+```

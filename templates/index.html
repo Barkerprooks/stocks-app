@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<p>this is the index page</p>
+
+<div>
+    {% if username %}
+        <p id="index-message">Hello, {{ username }}</p>
+    {% endif %}        
+</div>
+
 {% endblock %}
