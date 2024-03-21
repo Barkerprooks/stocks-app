@@ -43,3 +43,11 @@ CREATE TABLE users (username TEXT, md5sum TEXT);
 -- inserts data into the table as rows
 INSERT INTO users VALUES ('username', 'password');
 ```
+
+# SQL
+
+## Syntax
+Create a new table
+```
+CREATE TABLE <table> (field1 TEXT, field2 NUMBER, ...)
+```

@@ -1,9 +1,8 @@
 from flask import Flask, g, render_template, redirect, request, session
 from datetime import datetime
 import sqlite3
+import database
 
-my_username = "bob"
-my_password = "joe"
 dummy = [
     {
         "symbol": "sbux",
@@ -25,7 +24,7 @@ dummy = [
 
 
 def get_db():
-    if db := getattr(g, '_database', None):
+    if db := getattr(g, '_database', None) is None:
         db = g._database = sqlite3.connect("stocks.db")
     return db
 
@@ -68,12 +67,24 @@ def profile():
     return render_template('profile.html', username=username)
 
 
+@app.route('/create', methods=["GET", "POST"])
+def create():
+    if request.method == "POST":
+        db = get_db()
+        username = request.form['username']
+        password = request.form['password']
+        database.create_user(db, username, password)
+        return redirect('/login')
+    return render_template("create.html")
+
+
 @app.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == "POST":
+        db = get_db()
         username = request.form['username']
         password = request.form['password']
-        if username == my_username and password == my_password:
+        if database.check_password(db, username, password):
             session['username'] = username
             return redirect('/')
 

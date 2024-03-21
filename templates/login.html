@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<h1>Welcome to the stocks app</h1>
+
 <form method="POST">
     <input class="login-input" 
         name="username" 
@@ -11,5 +13,7 @@
         placeholder="password" />
     <input type="submit" id="submit-button" value="login" />
 </form>
+
+<a href="/create">click here to sign up</a>
 
 {% endblock %}

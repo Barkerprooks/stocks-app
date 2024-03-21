@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Create a new user account</h1>
+
+<form method="POST">
+    <input class="login-input"
+        name="username" 
+        placeholder="New username" />
+    <input class="login-input" 
+        name="password"
+        type="password"
+        placeholder="New password" />
+    <input class="login-input"
+        type="password"
+        placeholder="Validate password" />
+    <input type="submit" id="submit-button" value="Create" />
+</form>
+
+<a href="/login">Already have an account? login here</a>
+
+{% endblock %}
