@@ -51,6 +51,7 @@ form {
 }
 
 .login-input {
+    outline: none;
     padding: 12px;
     margin: 8px 0px;
 }
