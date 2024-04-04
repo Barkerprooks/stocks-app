@@ -50,6 +50,15 @@ form {
     text-align: right;
 }
 
+#message {
+    float: left;
+    width: 50%;
+}
+
+#image {
+    width: 25%;
+}
+
 .login-input {
     outline: none;
     padding: 12px;
