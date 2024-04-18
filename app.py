@@ -48,14 +48,29 @@ def list_stocks():
     username = session.get('username')
     if not username:
         return redirect("/login")
-    return render_template("list-stocks.html", dummy=dummy, username=username)
+    
+    db = get_db()
+    stocks = database.get_stocks(db, username)
+    return render_template("list-stocks.html", stocks=stocks, username=username)
 
 
-@app.route('/add-stock')
+@app.route('/add-stock', methods=["GET", "POST"])
 def add_stock():
     username = session.get('username')
     if not username:
-        return redirect("/login")
+        return redirect('/login')
+    
+    if request.method == 'POST':
+        db = get_db()
+        symbol = request.form['symbol']
+        shares = request.form['shares']
+        purchase_price = request.form['purchase_price']
+        share_price = request.form['share_price']
+        stock_position = request.form['stock_position']
+
+        userid = database.get_userid(username)
+        database.create_stock(db, symbol, shares, purchase_price, share_price, stock_position, userid)
+
     return render_template('add-stock.html', username=username)
 
 
@@ -87,7 +102,6 @@ def login():
         if database.check_password(db, username, password):
             session['username'] = username
             return redirect('/')
-
     return render_template("login.html")
 
 

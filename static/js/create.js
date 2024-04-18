@@ -1,3 +1,13 @@
+const checkPassword = (password, validatePassword) => {
+    if (password.length < 8)
+        return false;
+
+    if (password !== validatePassword)
+        return false;
+
+    return true;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const validatePassword = document.getElementById('validate-password');
@@ -7,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     submitButton.disabled = true;
 
     validatePassword.onkeyup = () => {
-        if (password.value === validatePassword.value) {
+        if (checkPassword(password.value, validatePassword.value)) {
             validatePassword.style.border = "1px solid green";
             submitButton.disabled = false;
         } else {

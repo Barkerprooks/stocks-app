@@ -8,9 +8,9 @@ def initialize_database():
                     symbol TEXT,
                     shares NUMBER,
                     purchase_price REAL,
-                    date NUMBER,
+                    date TEXT,
                     share_price REAL,
-                    stock_position NUMBER 
+                    stock_position NUMBER,
                     userid NUMBER )''')
 
 
@@ -23,6 +23,11 @@ def check_password(db, username, password):
     result = db.execute("SELECT password FROM users WHERE username = ?", [username])
     stored_password = result.fetchone()[0]
     return stored_password == password
+
+
+def get_userid(db, username):
+    result = db.execute("SELECT rowid FROM users WHERE username = ?", [username])
+    return result.fetchone()[0]
 
 
 def create_stock(db, symbol, shares, purchase_price, share_price, stock_position, userid):
@@ -40,6 +45,12 @@ def create_stock(db, symbol, shares, purchase_price, share_price, stock_position
 
     db.execute("INSERT INTO stocks VALUES (?, ?, ?, ?, ?, ?, ?)", fields)
     db.commit()
+
+
+def get_stocks(db, username):
+    userid = get_userid(db, username)
+    result = db.execute('SELECT * FROM stocks WHERE userid = ?', [userid])
+    return result.fetchall()
 
 
 if __name__ == "__main__":
