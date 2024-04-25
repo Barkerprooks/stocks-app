@@ -5,7 +5,7 @@ def initialize_database():
     db = sqlite3.connect("stocks.db")
     db.execute('CREATE TABLE users (username TEXT UNIQUE, password TEXT)')
     db.execute('''CREATE TABLE stocks (
-                    symbol TEXT,
+                    symbol TEXT UNIQUE,
                     shares NUMBER,
                     purchase_price REAL,
                     date TEXT,
@@ -44,6 +44,12 @@ def create_stock(db, symbol, shares, purchase_price, share_price, stock_position
     ]
 
     db.execute("INSERT INTO stocks VALUES (?, ?, ?, ?, ?, ?, ?)", fields)
+    db.commit()
+
+
+def remove_stock(db, symbol, username):
+    userid = get_userid(db, username)
+    db.execute('DELETE FROM stocks WHERE userid = ? AND symbol = ?', [userid, symbol])
     db.commit()
 
 

@@ -3,25 +3,6 @@ from datetime import datetime
 import sqlite3
 import database
 
-dummy = [
-    {
-        "symbol": "sbux",
-        "shares": 100,
-        "purchase price": 87.65,
-        "date": datetime.now(),
-        "share price": 102.28,
-        "stock position": 10228
-    },
-    {
-        "symbol": "cost",
-        "shares": 23,
-        "purchase price": 302.17,
-        "date": datetime.now(),
-        "share price": 373.43,
-        "stock position": 8588.89
-    },
-]
-
 
 def get_db():
     if db := getattr(g, '_database', None) is None:
@@ -51,6 +32,7 @@ def list_stocks():
     
     db = get_db()
     stocks = database.get_stocks(db, username)
+
     return render_template("list-stocks.html", stocks=stocks, username=username)
 
 
@@ -68,7 +50,7 @@ def add_stock():
         share_price = request.form['share_price']
         stock_position = request.form['stock_position']
 
-        userid = database.get_userid(username)
+        userid = database.get_userid(db, username)
         database.create_stock(db, symbol, shares, purchase_price, share_price, stock_position, userid)
 
     return render_template('add-stock.html', username=username)
@@ -103,6 +85,19 @@ def login():
             session['username'] = username
             return redirect('/')
     return render_template("login.html")
+
+
+@app.route('/delete/<symbol>')
+def delete(symbol):
+    username = session.get('username')
+    if not username:
+        return redirect('/')
+    
+    db = get_db()
+    database.remove_stock(db, symbol, username)
+
+    return redirect('/list-stocks')
+
 
 
 @app.route('/logout')

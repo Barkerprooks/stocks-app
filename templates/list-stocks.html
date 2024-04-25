@@ -1,8 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% for row in stocks %}
-    <div>{{ row }}</div>
-{% endfor %}
+<table id="list-stocks" cellspacing="0">
+    <thead>
+        <th>Symbol</th>
+        <th>Shares</th>
+        <th>Purchase Price</th>
+        <th>Date Purchased</th>
+        <th>Share Price</th>
+        <th>Stock Position</th>
+        <th></th>
+    </thead>
+    <tbody>
+        {% for symbol, shares, purchase_price, date, share_price, stock_position, _ in stocks %}
+        <tr>
+            <td>{{ symbol }}</td>
+            <td>x{{ shares }}</td>
+            <td>${{ purchase_price }}</td>
+            <td>{{ date }}</td>
+            <td>${{ share_price }}</td>
+            <td>{{ stock_position }}</td>
+            <td style="text-align: center">
+                <a style="color: red" href="/delete/{{ symbol }}">X</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}
