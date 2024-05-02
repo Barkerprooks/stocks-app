@@ -56,12 +56,26 @@ def add_stock():
     return render_template('add-stock.html', username=username)
 
 
-@app.route('/profile')
+@app.route('/profile', methods=["GET", "POST"])
 def profile():
     username = session.get('username')
     if not username:
         return redirect("/login")
-    return render_template('profile.html', username=username)
+    
+    db = get_db()
+    bio, age = database.get_bio_and_age(db, username)
+
+    if request.method == "POST":
+        userid = database.get_userid(db, username)
+        
+        username = session['username'] = request.form['username']
+        
+        bio = request.form['bio']
+        age = int(request.form['age'])
+        database.update_user(db, userid, username, bio, age)
+
+
+    return render_template('profile.html', username=username, bio=bio, age=age)
 
 
 @app.route('/create', methods=["GET", "POST"])
@@ -97,7 +111,6 @@ def delete(symbol):
     database.remove_stock(db, symbol, username)
 
     return redirect('/list-stocks')
-
 
 
 @app.route('/logout')

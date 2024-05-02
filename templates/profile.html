@@ -1,4 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-<p>your profile</p>
+
+<form method="POST">
+    <input name="username" placeholder="username: {{ username }}" value="{{ username }}"/>
+    
+    <textarea name="bio">{{ bio }}</textarea>
+    
+    <input name="age" type="number" placeholder="{{ age }}" value="{{ age }}"/>
+    <input type="submit" />
+</form>
+
 {% endblock %}
