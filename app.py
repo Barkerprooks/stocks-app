@@ -21,7 +21,13 @@ app.secret_key = b'helloworld'
 @app.route("/")
 def index():
     username = session.get("username")
-    return render_template('index.html', username=username)
+
+    db = get_db()
+    bio, age = '', 18
+    if username:
+        bio, age = database.get_bio_and_age(db, username)
+
+    return render_template('index.html', username=username, age=age, bio=bio)
 
 
 @app.route("/list-stocks")

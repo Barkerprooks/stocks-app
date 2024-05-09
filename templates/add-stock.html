@@ -2,12 +2,27 @@
 {% block content %}
 
 <form method="POST">
-    <input name="symbol" />
-    <input name="shares" type="number" />
-    <input name="purchase_price" type="number" step="0.01" />
-    <input name="share_price" type="number" step="0.01" />
-    <input name="stock_position" type="number" />
-
+    <h4>Add a new stock</h4>
+    <div>
+        <label>Symbol: </label>
+        <input name="symbol" placeholder="GOOG" />
+    </div>
+    <div>
+        <label>Shares: </label>
+        <input name="shares" type="number" />
+    </div>
+    <div>
+        <label>Purchase Price: </label>
+        <input name="purchase_price" type="number" step="0.01" />
+    </div>
+    <div>
+        <label>Share Price: </label>
+        <input name="share_price" type="number" step="0.01" />
+    </div>
+    <div>
+        <label>Stock Postition: </label>
+        <input name="stock_position" type="number" />
+    </div>
     <input type="submit" value="Add stock" />
 </form>
 

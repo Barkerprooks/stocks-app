@@ -79,6 +79,11 @@ form {
     margin: 2px;
 }
 
+.error {
+    font-family: monospace;
+    color: red;
+}
+
 .login-input {
     outline: none;
     padding: 12px;

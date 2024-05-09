@@ -1,29 +1,42 @@
-const checkPassword = (password, validatePassword) => {
-    if (password.length < 8)
-        return false;
-
-    if (password !== validatePassword)
-        return false;
-
-    return true;
-}
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    const validatePassword = document.getElementById('validate-password');
+    // HTML Tags
+    const passwordErrorText = document.getElementById("password-error");
+    const validateErrorText = document.getElementById("validate-error");
+    const passwordInput = document.getElementById('password');
+    const validatePasswordInput = document.getElementById('validate-password');
     const submitButton = document.getElementById('submit-button');
-    const password = document.getElementById('password');
 
     submitButton.disabled = true;
 
-    validatePassword.onkeyup = () => {
-        if (checkPassword(password.value, validatePassword.value)) {
-            validatePassword.style.border = "1px solid green";
-            submitButton.disabled = false;
+    const passwordLength = 8;
+
+    // When the password field is being typed in
+    passwordInput.onkeyup = () => {
+        let password = passwordInput.value;
+
+        if (password.length >= passwordLength) {
+            passwordInput.style.border = "1px solid green";
+            passwordErrorText.innerText = "";
         } else {
-            validatePassword.style.border = "1px solid red";
+            passwordInput.style.border = "1px solid red";
+            passwordErrorText.innerText = `password must be ${passwordLength} characters long`;
             submitButton.disabled = true;
         }
     };
 
+    validatePasswordInput.onkeyup = () => {
+        let password = passwordInput.value;
+        let validatePassword = validatePasswordInput.value;
+
+        if (password == validatePassword) {
+            validatePasswordInput.style.border = "1px solid green";
+            validateErrorText.innerText = "";
+            submitButton.disabled = false;
+        } else {
+            validatePasswordInput.style.border = "1px solid red";
+            validateErrorText.innerText = "passwords do not match";
+            submitButton.disabled = true;
+        }
+    };
 });

@@ -2,11 +2,19 @@
 {% block content %}
 
 <form method="POST">
-    <input name="username" placeholder="username: {{ username }}" value="{{ username }}"/>
-    
-    <textarea name="bio">{{ bio }}</textarea>
-    
-    <input name="age" type="number" placeholder="{{ age }}" value="{{ age }}"/>
+    <h4>{{ username }}'s Profile</h4>
+    <div>
+        <label>Username: </label>
+        <input name="username" value="{{ username }}"/>
+    </div>
+    <div>
+        <label>Age: </label>
+        <input name="age" type="number" value="{{ age }}"/>
+    </div>
+    <div>
+        <label>Bio: </label>
+        <textarea name="bio">{{ bio }}</textarea>
+    </div>
     <input type="submit" />
 </form>
 
