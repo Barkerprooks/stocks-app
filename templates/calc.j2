@@ -1,0 +1,20 @@
+{% extends 'base.j2' %}
+{% block content %}
+
+<h1>Answer: {{ answer }}</h1>
+
+<form method="POST">
+    <input name="num1" type="number" />
+    <input name="num2" type="number" />
+    <input type="submit" />
+</form>
+
+<h1 id="answer">Answer: 0</h1>
+<div>
+    <input id="num1" type="number" />
+    <input id="num2" type="number" />
+    <button id="submit">Add</button>
+</div>
+
+<script src="static/js/calc.js"></script>
+{% endblock %}

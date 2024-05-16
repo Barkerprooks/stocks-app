@@ -1,0 +1,10 @@
+{% extends 'base.j2' %}
+{% block content %}
+{% if username == None %}
+    <h1>Welcome, Guest</h1>
+{% else %}
+    <h3>Welcome, {{ username }}</h3>
+    <h6>Age: {{ age }} years old</h6>
+    <p>{{ bio }}</p>
+{% endif %}
+{% endblock %}

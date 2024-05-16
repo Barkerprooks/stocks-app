@@ -3,8 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // HTML Tags
     const passwordErrorText = document.getElementById("password-error");
     const validateErrorText = document.getElementById("validate-error");
+    
+    // User input
     const passwordInput = document.getElementById('password');
     const validatePasswordInput = document.getElementById('validate-password');
+
+    // submit form
     const submitButton = document.getElementById('submit-button');
 
     submitButton.disabled = true;
@@ -29,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let password = passwordInput.value;
         let validatePassword = validatePasswordInput.value;
 
-        if (password == validatePassword) {
+        if (password.length >= passwordLength && password == validatePassword) {
             validatePasswordInput.style.border = "1px solid green";
             validateErrorText.innerText = "";
             submitButton.disabled = false;
@@ -38,5 +42,5 @@ document.addEventListener('DOMContentLoaded', () => {
             validateErrorText.innerText = "passwords do not match";
             submitButton.disabled = true;
         }
-    };
+    }; 
 });
